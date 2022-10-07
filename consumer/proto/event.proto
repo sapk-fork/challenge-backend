@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package event;
+option go_package = ".;event";
+
+message Event {
+    message Properties {
+        string url = 1;
+        string title = 2;
+        string path = 3;
+        string user_agent = 4;
+    }
+
+    string message_id = 1;
+    string tenant_id = 2;
+    string user_id = 3;
+    google.protobuf.Timestamp triggered_at = 4;
+    string event_type = 5;
+    Properties properties = 6;
+}
+
+message UserURL {
+    string user_id = 1;
+    string url = 2;
+}
+
+message Response {
+	string msg = 1;
+}
+
+
+service API {
+	rpc Handle(Event) returns (Response) {};
+	rpc AddURL(UserURL) returns (Response) {};
+	rpc ContainURL(UserURL) returns (Response) {};
+}
