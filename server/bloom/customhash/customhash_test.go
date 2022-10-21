@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"bloom/customhash"
+	"server/bloom/customhash"
 
 	_ "golang.org/x/crypto/blake2b"
 )

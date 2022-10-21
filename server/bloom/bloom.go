@@ -1,9 +1,9 @@
 package bloom
 
 import (
-	"bloom/multiplehash"
 	"encoding/ascii85"
 	"hash"
+	"server/bloom/multiplehash"
 	"sync"
 )
 
@@ -22,6 +22,12 @@ type Filter interface {
 	Contain([]byte) bool
 	// Contain return if object fingerprint is probably in bloom filter
 	ContainFingerprint([]byte) bool
+	// LoadFingerprint from string representation.
+	LoadFingerprint(str string) error
+	// String output for storing it state.
+	String() string
+	// Reset clear filter.
+	Reset()
 }
 
 type filter struct {
@@ -49,6 +55,17 @@ func New(hashList ...hash.Hash) (*filter, error) {
 		hash:        hash,
 		fingerprint: make([]byte, hash.Size()),
 	}, nil
+}
+
+// Reset clear filter.
+func (f *filter) Reset() {
+	f.mu.Lock()
+	defer f.mu.Unlock()
+	// AGI test if better to set at zero
+	//f.fingerprint = make([]byte, f.hash.Size())
+	for i := range f.fingerprint {
+		f.fingerprint[i] = 0
+	}
 }
 
 func (f *filter) hashBytes(b []byte) []byte {

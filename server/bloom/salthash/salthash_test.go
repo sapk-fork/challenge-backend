@@ -8,7 +8,7 @@ import (
 	"github.com/brianvoe/gofakeit/v6"
 	"github.com/stretchr/testify/assert"
 
-	"bloom/salthash"
+	"server/bloom/salthash"
 
 	_ "golang.org/x/crypto/blake2b"
 )

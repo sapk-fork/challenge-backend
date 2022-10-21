@@ -1,12 +1,12 @@
 package bloom_test
 
 import (
-	"bloom"
-	"bloom/customhash"
-	"bloom/salthash"
 	"crypto"
 	"fmt"
 	"hash"
+	"server/bloom"
+	"server/bloom/customhash"
+	"server/bloom/salthash"
 	"testing"
 
 	"github.com/brianvoe/gofakeit/v6"

@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"bloom/multiplehash"
+	"server/bloom/multiplehash"
 
 	_ "crypto/md5"
 

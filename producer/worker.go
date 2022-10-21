@@ -64,6 +64,7 @@ func worker() {
 			logrus.Errorf("Event %s: %s", event.Type, err.Error())
 		} else {
 			logrus.Infof("[%d] Event %s", taskNbr, event.Type)
+			//			logrus.Infof("[%d] Event %#v", taskNbr, event)
 		}
 	}
 }
